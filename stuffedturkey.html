@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>SMARTHOME</title>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li><a href="kitchen.html">Kitchen</a></li>
+          <li><a href="laundry.html">Laundry</a></li>
+          <li><a href="unavailable.html">Rooms</a></li>
+          <li><a href="airconditioner.html">Air Conditioner</a></li>
+        </ul>
+      </nav>
+
+      <button onclick="goBack()" class="back-button">⬅︎</button>
+
+      <div class="mobile-menu-icon">☰</div>
+
+      <div class="logo">
+        <a href="home.html"><h1>SMARTHOME</h1></a>
+      </div>
+      <div class="search"></div>
+      <div class="profile-section">
+        <img
+          src="https://a.storyblok.com/f/191576/1200x800/faa88c639f/round_profil_picture_before_.webp"
+          alt="Photo de profil"
+          class="profile-pic"
+        />
+        <span class="welcome-text">Welcome Madeline</span>
+      </div>
+    </header>
+    <main>
+      <section class="recipe">
+        <div class="image-recipe-left">
+          <img
+            src="https://assets.epicurious.com/photos/560d9a6a7b55306961bf78bd/16:9/w_4064,h_2286,c_limit/240444_hires.jpg"
+            alt="Stuffed Turkey Image"
+          />
+        </div>
+        <div class="list-para-right">
+          <h2>Stuffed Turkey</h2>
+          <h3>Ingredients:</h3>
+          <ul>
+            <li>whole turkey</li>
+            <li>mild Italian sausage</li>
+            <li>minced garlic</li>
+            <li>fresh parsley</li>
+          </ul>
+
+          <h3>Step by Step:</h3>
+          <ul>
+            <li>1. Season a turkey with salt and pepper.</li>
+            <li>
+              2. In a bowl, combine softened butter with dried thyme, rosemary,
+              sage, garlic powder, and onion powder. Rub this herb-infused
+              butter all over the turkey, inside and out.
+            </li>
+            <li>
+              3. For the stuffing, cook Italian sausage in a skillet and mix it
+              with sautéed onions, celery, carrots, garlic, stale bread cubes,
+              parsley, sage, thyme, salt, and pepper.
+            </li>
+            <li>
+              4. Moisten the stuffing with chicken or turkey broth. Stuff the
+              turkey cavity with this mixture.
+            </li>
+            <li>
+              5. Roast the turkey in a preheated oven at 325°F (163°C),
+              following standard cooking times for the turkey's weight.
+            </li>
+          </ul>
+          <div class="recipe-buttons">
+            <a href="orderTurkey.html" class="recipe-button"
+              >Calculate and Order page</a
+            >
+            <a href="stuffedcourgettes.html" class="recipe-button"
+              >Vegan Version</a
+            >
+            <a href="unavailable.html" class="recipe-button"
+              >Gluten-Free Version</a
+            >
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- Pop-up de chargement -->
+    <div id="loading-popup" class="loading-popup" style="display: none">
+      <div class="loading-icon"></div>
+      <div class="loading-text">Checking the fridge..</div>
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const loadingPopup = document.getElementById("loading-popup");
+        const calculateOrderButton = document.querySelector(".recipe-button");
+
+        calculateOrderButton.addEventListener("click", (e) => {
+          e.preventDefault();
+          loadingPopup.style.display = "flex";
+
+          setTimeout(() => {
+            loadingPopup.style.display = "none";
+            window.location.href = calculateOrderButton.getAttribute("href");
+          }, 2000);
+        });
+      });
+    </script>
+
+    <script src="menu.js"></script>
+  </body>
+</html>

@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>SMARTHOME</title>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li><a href="kitchen.html">Kitchen</a></li>
+          <li><a href="laundry.html">Laundry</a></li>
+          <li><a href="unavailable.html">Rooms</a></li>
+          <li><a href="airconditioner.html">Air Conditioner</a></li>
+        </ul>
+      </nav>
+
+      <button onclick="goBack()" class="back-button">⬅︎</button>
+
+      <div class="mobile-menu-icon">☰</div>
+
+      <div class="logo">
+        <a href="home.html"><h1>SMARTHOME</h1></a>
+      </div>
+      <div class="search"></div>
+      <div class="shopping-cart-icon">
+        <span>🛒</span>
+        <span id="cart-count">0</span>
+      </div>
+    </header>
+
+    <main>
+      <div class="sections-container">
+        <section class="product-display">
+          <h2>Products in the Fridge and Pantry</h2>
+          <div class="product-list">
+            <div class="product-item">
+              <h3>Apples 🍎</h3>
+              <p>Expiration Date: 10/12/2023</p>
+              <p>Nutritional Score: 90/100</p>
+            </div>
+
+            <div class="product-item">
+              <h3>Oranges 🍊</h3>
+              <p>Expiration Date: 15/12/2023</p>
+              <p>Nutritional Score: 85/100</p>
+            </div>
+
+            <div class="product-item">
+              <h3>Bananas 🍌</h3>
+              <p>Expiration Date: 20/12/2023</p>
+              <p>Nutritional Score: 80/100</p>
+            </div>
+
+            <div class="product-item">
+              <h3>Strawberries 🍓</h3>
+              <p>Expiration Date: 25/12/2023</p>
+              <p>Nutritional Score: 88/100</p>
+            </div>
+
+            <div class="product-item">
+              <h3>Chicken 🍗</h3>
+              <p>Expiration Date : 18/12/2023</p>
+              <p>Nutritional Score : 85/100</p>
+            </div>
+
+            <div class="product-item">
+              <h3>Sushi 🍣</h3>
+              <p>Expiration Date : 22/12/2023</p>
+              <p>Nutritional Score : 92/100</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="suggested-products">
+          <h2>Suggested Products to Buy</h2>
+          <div class="product-list">
+            <div class="product-item">
+              <h3>Milk 🥛/ 5€</h3>
+              <p>Suggestion: Low in stock</p>
+              <button
+                type="button"
+                class="addingtocart-button"
+                data-price="5"
+                id="milk"
+              >
+                Buy
+              </button>
+            </div>
+            <div class="product-item">
+              <h3>Bread 🥖/ 3€</h3>
+              <p>Suggestion: Freshly Baked</p>
+              <button
+                type="button"
+                class="addingtocart-button"
+                data-price="3"
+                id="bread"
+              >
+                Buy
+              </button>
+            </div>
+
+            <div class="product-item">
+              <h3>Eggs 🥚/ 4€</h3>
+              <p>Suggestion: Organic</p>
+              <button
+                type="button"
+                class="addingtocart-button"
+                data-price="4"
+                id="eggs"
+              >
+                Buy
+              </button>
+            </div>
+            <div class="product-item">
+              <h3>Water 💧/ 2€</h3>
+              <p>Suggestion: Mineral Water</p>
+              <button
+                type="button"
+                class="addingtocart-button"
+                data-price="2"
+                id="water"
+              >
+                Buy
+              </button>
+            </div>
+            <div class="product-item">
+              <h3>Cheese 🧀/ 6€</h3>
+              <p>Suggestion: Local Cheese</p>
+              <button
+                type="button"
+                class="addingtocart-button"
+                data-price="6"
+                id="cheese"
+              >
+                Buy
+              </button>
+            </div>
+            <div class="product-item">
+              <h3>Steak 🥩/ 8€</h3>
+              <p>Suggestion: Prime Cut</p>
+              <button
+                type="button"
+                class="addingtocart-button"
+                data-price="8"
+                id="steak"
+              >
+                Buy
+              </button>
+            </div>
+          </div>
+          <button type="button" id="buy-button">Buy Selected Products</button>
+        </section>
+      </div>
+
+      <!-- Pop-up Modal -->
+      <div id="purchase-modal" class="modal">
+        <div class="modal-content">
+          <span class="close-button">&times;</span>
+          <h3>Complete Your Purchase</h3>
+          <div class="modal-content">
+            <ul id="cart-products-list"></ul>
+          </div>
+          <p>Enter Phone Number:</p>
+          <input
+            type="tel"
+            id="phone-number"
+            pattern="[0-9]{10}"
+            required
+            placeholder="1234567890"
+          />
+          <p>Select Payment Method:</p>
+          <select>
+            <option value="credit-card">Credit Card</option>
+            <option value="paypal">PayPal</option>
+            <option value="bank-transfer">MBway</option>
+          </select>
+          <button type="button" onclick="validatePurchase()">
+            Confirm Purchase
+          </button>
+
+          <div
+            id="confirmation-notification"
+            class="notification"
+            style="display: none"
+          >
+            <p>Thank you for your purchase!</p>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script>
+      let shoppingCart = [];
+
+      document.addEventListener("DOMContentLoaded", () => {
+        document.querySelectorAll(".addingtocart-button").forEach((button) => {
+          const productId = button.id;
+          if (localStorage.getItem(productId) === "purchased") {
+            button.parentElement.style.display = "none";
+          }
+
+          button.addEventListener("click", function () {
+            const productPrice = parseFloat(this.getAttribute("data-price"));
+            toggleProductInCart(productId, productPrice, this);
+          });
+        });
+
+        const buyButton = document.getElementById("buy-button");
+        buyButton.addEventListener("click", showCartInModal);
+
+        const modal = document.getElementById("purchase-modal");
+        const closeButton = document.querySelector(".modal .close-button");
+        closeButton.onclick = () => (modal.style.display = "none");
+        window.onclick = (event) => {
+          if (event.target === modal) {
+            modal.style.display = "none";
+          }
+        };
+      });
+
+      function toggleProductInCart(productId, productPrice, button) {
+        const productIndex = shoppingCart.findIndex(
+          (item) => item.id === productId
+        );
+        if (productIndex > -1) {
+          shoppingCart.splice(productIndex, 1);
+          button.textContent = "Buy";
+        } else {
+          shoppingCart.push({ id: productId, price: productPrice });
+          button.textContent = "Remove";
+        }
+        updateCartCount();
+      }
+
+      function updateCartCount() {
+        const cartCountElement = document.getElementById("cart-count");
+        cartCountElement.textContent = shoppingCart.length;
+      }
+
+      function showCartInModal() {
+        if (shoppingCart.length === 0) {
+          alert("Please select at least one product to buy.");
+          return;
+        }
+        const cartProductsList = document.getElementById("cart-products-list");
+        cartProductsList.innerHTML = "";
+        let total = 0;
+
+        shoppingCart.forEach((item) => {
+          const listItem = document.createElement("li");
+          listItem.textContent = item.id + " - €" + item.price;
+          cartProductsList.appendChild(listItem);
+          total += item.price;
+        });
+
+        const modalTotalPrice = document.createElement("p");
+        modalTotalPrice.textContent = "Total: €" + total.toFixed(2);
+        cartProductsList.appendChild(modalTotalPrice);
+
+        document.getElementById("purchase-modal").style.display = "block";
+      }
+
+      function validatePurchase() {
+        const phoneNumber = document.getElementById("phone-number").value;
+        if (phoneNumber.length === 10) {
+          shoppingCart.forEach((item) => {
+            localStorage.setItem(item.id, "purchased");
+          });
+
+          document.getElementById("confirmation-notification").style.display =
+            "block";
+          setTimeout(() => {
+            document.getElementById("confirmation-notification").style.display =
+              "none";
+            document.getElementById("purchase-modal").style.display = "none";
+            shoppingCart = [];
+            updateCartCount();
+            window.location.reload();
+          }, 5000);
+        } else {
+          alert("Please enter a valid phone number.");
+        }
+      }
+    </script>
+
+    <script src="menu.js"></script>
+  </body>
+</html>

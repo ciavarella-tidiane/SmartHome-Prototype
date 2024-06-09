@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>SMARTHOME</title>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li><a href="kitchen.html">Kitchen</a></li>
+          <li><a href="laundry.html">Laundry</a></li>
+          <li><a href="unavailable.html">Rooms</a></li>
+          <li><a href="airconditioner.html">Air Conditioner</a></li>
+        </ul>
+      </nav>
+
+      <button onclick="goBack()" class="back-button">⬅︎</button>
+
+      <div class="mobile-menu-icon">☰</div>
+
+      <div class="logo">
+        <a href="home.html"><h1>SMARTHOME</h1></a>
+      </div>
+      <div class="search"></div>
+      <div class="profile-section">
+        <img
+          src="https://a.storyblok.com/f/191576/1200x800/faa88c639f/round_profil_picture_before_.webp"
+          alt="Photo de profil"
+          class="profile-pic"
+        />
+        <span class="welcome-text">Welcome Madeline</span>
+      </div>
+    </header>
+
+    <main>
+      <div class="airconditioner-control">
+        <h2>Air Conditioner Control</h2>
+        <form id="airconditioner-form">
+          <label for="room">Select Room:</label>
+          <select id="room" name="room" required>
+            <option value="bedroom">Bedroom</option>
+            <option value="livingroom">Living Room</option>
+            <option value="kitchen">Kitchen</option>
+          </select>
+
+          <label for="temperature">Set Temperature:</label>
+          <input
+            type="number"
+            id="temperature"
+            name="temperature"
+            min="18"
+            max="30"
+            placeholder="Enter temperature (°C)"
+            required
+          />
+
+          <label for="fan-speed">Set Fan Speed:</label>
+          <select id="fan-speed" name="fan-speed" required>
+            <option value="1">Low</option>
+            <option value="2">Medium</option>
+            <option value="3">High</option>
+          </select>
+
+          <label for="power">Power:</label>
+          <select id="power" name="power" required>
+            <option value="on">On</option>
+            <option value="off">Off</option>
+          </select>
+
+          <button type="button" onclick="submitForm()">Apply Settings</button>
+        </form>
+
+        <section
+          class="notification"
+          id="confirmation-section"
+          style="display: none"
+        >
+          <p id="notification-message">gfdsdfg</p>
+        </section>
+      </div>
+    </main>
+
+    <script>
+      function submitForm() {
+        var room = document.getElementById("room").value;
+        var temperature = document.getElementById("temperature").value;
+        var fanSpeed = document.getElementById("fan-speed").value;
+        var power = document.getElementById("power").value;
+
+        localStorage.setItem(
+          room,
+          JSON.stringify({ temperature, fanSpeed, power })
+        );
+
+        document.getElementById("airconditioner-form").style.display = "none";
+        document.getElementById("confirmation-section").style.display = "block";
+
+        document.getElementById("airconditioner-form").reset();
+
+        showNotification("Air conditioner settings applied successfully!");
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll("#room option").forEach((option) => {
+          var roomSettings = localStorage.getItem(option.value);
+          if (roomSettings) {
+            roomSettings = JSON.parse(roomSettings);
+
+            if (option.value === document.getElementById("room").value) {
+              document.getElementById("temperature").value =
+                roomSettings.temperature;
+              document.getElementById("fan-speed").value =
+                roomSettings.fanSpeed;
+              document.getElementById("power").value = roomSettings.power;
+            }
+          }
+        });
+
+        document.getElementById("room").addEventListener("change", function () {
+          var roomSettings = localStorage.getItem(this.value);
+          if (roomSettings) {
+            roomSettings = JSON.parse(roomSettings);
+            document.getElementById("temperature").value =
+              roomSettings.temperature;
+            document.getElementById("fan-speed").value = roomSettings.fanSpeed;
+            document.getElementById("power").value = roomSettings.power;
+          } else {
+            document.getElementById("temperature").value = "";
+            document.getElementById("fan-speed").value = "1";
+            document.getElementById("power").value = "off";
+          }
+        });
+      });
+
+      function showNotification(message) {
+        var notificationElement = document.getElementById(
+          "notification-message"
+        );
+        notificationElement.innerText = message;
+        document.querySelector(".notification").style.display = "block";
+
+        setTimeout(function () {
+          document.querySelector(".notification").style.display = "none";
+        }, 5000);
+      }
+    </script>
+    <script src="menu.js"></script>
+  </body>
+</html>

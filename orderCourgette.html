@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>SMARTHOME</title>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li><a href="kitchen.html">Kitchen</a></li>
+          <li><a href="laundry.html">Laundry</a></li>
+          <li><a href="unavailable.html">Rooms</a></li>
+          <li><a href="airconditioner.html">Air Conditioner</a></li>
+        </ul>
+      </nav>
+
+      <button onclick="goBack()" class="back-button">⬅︎</button>
+
+      <div class="mobile-menu-icon">☰</div>
+
+      <div class="logo">
+        <a href="home.html"><h1>SMARTHOME</h1></a>
+      </div>
+      <div class="search"></div>
+      <div class="profile-section">
+        <img
+          src="https://a.storyblok.com/f/191576/1200x800/faa88c639f/round_profil_picture_before_.webp"
+          alt="Photo de profil"
+          class="profile-pic"
+        />
+        <span class="welcome-text">Welcome Madeline</span>
+      </div>
+    </header>
+    <main>
+      <div class="user-actions-container">
+        <section class="user-actions">
+          <label for="num-persons">Select Number of Doses:</label>
+          <select id="num-persons" name="num-persons">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+          </select>
+
+          <label for="payment-method">Select Payment Method:</label>
+          <select id="payment-method" name="payment-method">
+            <option value="mbway">MBway</option>
+            <option value="credit-card">Credit Card</option>
+            <option value="paypal">PayPal</option>
+          </select>
+          <label for="phone-number">Phone Number:</label>
+          <input
+            type="tel"
+            id="phone-number"
+            name="phone-number"
+            placeholder="Enter your phone number"
+            pattern="[0-9]{10}"
+            required
+          />
+
+          <label for="delivery-time">Start Time:</label>
+          <input type="time" id="delivery-time" name="delivery-time" />
+
+          <button type="button" onclick="validateAndOrder()">Order</button>
+        </section>
+
+        <section class="user-actions">
+          <div class="order-form"></div>
+
+          <div class="ingredient-display">
+            <h3>Ingredients for your order:</h3>
+            <ul id="ingredient-list"></ul>
+          </div>
+        </section>
+      </div>
+
+      <section class="notification" id="confirmation-section">
+        <p id="notification-message">Hey thank you</p>
+      </section>
+    </main>
+    <script>
+      function validateAndOrder() {
+        var deliveryTime = document.getElementById("delivery-time").value;
+        var numberOfDoses = document.getElementById("num-persons").value;
+        var phoneNumber = document.getElementById("phone-number").value;
+        var phoneNumberPattern = /^[0-9]{10}$/;
+
+        if (!phoneNumber.match(phoneNumberPattern)) {
+          alert("Please enter a valid 10-digit phone number.");
+        } else if (!deliveryTime) {
+          alert("Please select a delivery time.");
+        } else if (numberOfDoses === "0") {
+          alert("Please select the number of doses.");
+        } else {
+          showNotification("Everything has been ordered!");
+        }
+      }
+
+      function showNotification(message) {
+        var notificationElement = document.getElementById(
+          "notification-message"
+        );
+        notificationElement.innerText = message;
+        document.querySelector(".notification").style.display = "block";
+
+        setTimeout(function () {
+          document.querySelector(".notification").style.display = "none";
+        }, 5000);
+      }
+    </script>
+
+    <script>
+      function showNotification(message) {
+        var notificationElement = document.getElementById(
+          "notification-message"
+        );
+        notificationElement.innerText = message;
+        document.querySelector(".notification").style.display = "block";
+
+        setTimeout(function () {
+          document.querySelector(".notification").style.display = "none";
+        }, 5000);
+      }
+    </script>
+
+    <script src="menu.js"></script>
+
+    <script>
+      document
+        .getElementById("num-persons")
+        .addEventListener("change", function () {
+          var numberOfDoses = this.value;
+          var ingredients = {
+            "whole courgette": { quantity: 1000, pricePerDose: 3 },
+            "mild Italian sausage": { quantity: 200, pricePerDose: 2 },
+            "minced garlic": { quantity: 50, pricePerDose: 2 },
+            "fresh parsley": { quantity: 100, pricePerDose: 1 },
+          };
+
+          var ingredientListElement =
+            document.getElementById("ingredient-list");
+          ingredientListElement.innerHTML = "";
+
+          for (var ingredient in ingredients) {
+            var quantityForOne = ingredients[ingredient].quantity / 4;
+            var totalQuantity = quantityForOne * numberOfDoses;
+            var totalCost =
+              ingredients[ingredient].pricePerDose * numberOfDoses;
+
+            var listItem = document.createElement("li");
+            listItem.textContent = `${totalQuantity.toFixed(0)}${
+              isNaN(quantityForOne) ? "" : "g"
+            } of ${ingredient} / ${totalCost.toFixed(2)}€`;
+            ingredientListElement.appendChild(listItem);
+          }
+        });
+    </script>
+  </body>
+</html>

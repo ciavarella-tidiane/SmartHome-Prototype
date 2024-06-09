@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>SMARTHOME</title>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li><a href="kitchen.html">Kitchen</a></li>
+          <li><a href="laundry.html">Laundry</a></li>
+          <li><a href="unavailable.html">Rooms</a></li>
+          <li><a href="airconditioner.html">Air Conditioner</a></li>
+        </ul>
+      </nav>
+
+      <button onclick="goBack()" class="back-button">⬅︎</button>
+
+      <div class="mobile-menu-icon">☰</div>
+
+      <div class="logo">
+        <a href="home.html"><h1>SMARTHOME</h1></a>
+      </div>
+      <div class="search"></div>
+      <div class="profile-section">
+        <img
+          src="https://a.storyblok.com/f/191576/1200x800/faa88c639f/round_profil_picture_before_.webp"
+          alt="Photo de profil"
+          class="profile-pic"
+        />
+        <span class="welcome-text">Welcome Madeline</span>
+      </div>
+    </header>
+    <main>
+      <section class="recipe">
+        <div class="image-recipe-left">
+          <img
+            src="https://www.mamazillafood.com/assets/images/stuffed-zucchini-boats-with-ground-beef/main-16-9.jpg"
+            alt="Stuffed Courgettes Image"
+          />
+        </div>
+        <div class="list-para-right">
+          <h2>Stuffed Courgettes</h2>
+          <h3>Ingredients:</h3>
+          <ul>
+            <li>courgettes</li>
+            <li>cheese</li>
+            <li>minced garlic</li>
+            <li>fresh parsley</li>
+          </ul>
+          <h3>Step by Step:</h3>
+          <ul>
+            <li>
+              1. Prepare Courgettes: Remove and discard the giblets. Pat the
+              Courgettes dry with paper towels and place it in a roasting pan.
+            </li>
+            <li>
+              2. Prepare stuffing: Bring the water and butter to a boil. Stir in
+              the stuffing mix, cover, remove from heat, and let rest for 5
+              minutes. Meanwhile, cook the celery and onion in butter. Add the
+              cooked veggies to the stuffing. Stir in bread pieces, salt, and
+              pepper.
+            </li>
+            <li>
+              3. Stuff Courgettes: Stuff the bread mixture into the body and
+              neck cavities of the Courgettes. Rub the skin with vegetable oil.
+            </li>
+            <li>
+              4. Roast Courgettes: Loosely cover the bird with aluminum foil.
+              Roast the stuffed Courgettes in a preheated oven until the
+              thickest part of the thigh reaches 180 degrees F and the interior
+              of the stuffing reaches 165 degrees F. Remove the foil during the
+              last 30 minutes of roasting to brown the skin.
+            </li>
+          </ul>
+
+          <div class="recipe-buttons">
+            <a href="orderCourgette.html" class="recipe-button"
+              >Calculate and Order page</a
+            >
+            <a href="stuffedturkey.html" class="recipe-button"
+              >Non-Vegan Version</a
+            >
+            <a href="unavailable.html" class="recipe-button"
+              >Gluten-Free Version</a
+            >
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- Pop-up de chargement -->
+    <div id="loading-popup" class="loading-popup" style="display: none">
+      <div class="loading-icon"></div>
+      <div class="loading-text">Checking the fridge...</div>
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const loadingPopup = document.getElementById("loading-popup");
+        const calculateOrderButton = document.querySelector(".recipe-button");
+
+        calculateOrderButton.addEventListener("click", (e) => {
+          e.preventDefault();
+          loadingPopup.style.display = "flex";
+
+          setTimeout(() => {
+            loadingPopup.style.display = "none";
+            window.location.href = calculateOrderButton.getAttribute("href");
+          }, 2000); //2 secondes
+        });
+      });
+    </script>
+
+    <script src="menu.js"></script>
+  </body>
+</html>

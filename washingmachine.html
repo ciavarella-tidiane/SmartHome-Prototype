@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>SMARTHOME</title>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li><a href="kitchen.html">Kitchen</a></li>
+          <li><a href="laundry.html">Laundry</a></li>
+          <li><a href="unavailable.html">Rooms</a></li>
+          <li><a href="airconditioner.html">Air Conditioner</a></li>
+        </ul>
+      </nav>
+
+      <button onclick="goBack()" class="back-button">⬅︎</button>
+
+      <div class="mobile-menu-icon">☰</div>
+
+      <div class="logo">
+        <a href="home.html"><h1>SMARTHOME</h1></a>
+      </div>
+      <div class="search"></div>
+      <div class="profile-section">
+        <img
+          src="https://a.storyblok.com/f/191576/1200x800/faa88c639f/round_profil_picture_before_.webp"
+          alt="Photo de profil"
+          class="profile-pic"
+        />
+        <span class="welcome-text">Welcome Madeline</span>
+      </div>
+    </header>
+    <main>
+      <section class="washing-machine-control">
+        <h2>Washing Machine Control</h2>
+
+        <form id="washing-machine-form">
+          <label for="program">Select Wash Program:</label>
+          <select id="program" name="program">
+            <option value="normal">1. Normal</option>
+            <option value="delicate">2. Delicate</option>
+            <option value="heavy-duty">3. Heavy Duty</option>
+            <option value="white">4. White</option>
+            <option value="quick">5. Quick Wash</option>
+          </select>
+
+          <label>Fabric Softener:</label>
+          <button
+            type="button"
+            id="fabric-softener-btn"
+            class="softener-btn off"
+          >
+            No Softener
+          </button>
+
+          <label for="start-time">Start Time:</label>
+          <select id="start-time" name="start-time"></select>
+
+          <label for="end-time">End Time:</label>
+          <select id="end-time" name="end-time"></select>
+
+          <button class="start-washing" type="button" onclick="submitForm()">
+            Start Washing
+          </button>
+        </form>
+      </section>
+
+      <section class="notification" id="confirmation-section">
+        <p id="notification-message">Hey thank you</p>
+      </section>
+    </main>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        populateTimeOptions();
+      });
+
+      function populateTimeOptions() {
+        var startSelect = document.getElementById("start-time");
+        var endSelect = document.getElementById("end-time");
+        for (var i = 0; i < 24; i++) {
+          var hour = i % 24;
+          var option = document.createElement("option");
+          option.value = hour;
+          option.text = hour + ":00";
+          startSelect.appendChild(option.cloneNode(true));
+          endSelect.appendChild(option);
+        }
+
+        startSelect.addEventListener("change", function () {
+          var endTime = (parseInt(this.value) + 1) % 24;
+          document.getElementById("end-time").value = endTime;
+        });
+
+        endSelect.addEventListener("change", function () {
+          var startTime = (parseInt(this.value) - 1 + 24) % 24;
+          document.getElementById("start-time").value = startTime;
+        });
+      }
+    </script>
+
+    <script>
+      document
+        .getElementById("fabric-softener-btn")
+        .addEventListener("click", function () {
+          this.classList.toggle("on");
+          this.classList.toggle("off");
+          if (this.classList.contains("on")) {
+            this.textContent = "With Softener";
+          } else {
+            this.textContent = "No Softener";
+          }
+        });
+    </script>
+
+    <script>
+      function submitForm() {
+        var program = document.getElementById("program").value;
+        var fabricSoftener = document.getElementById(
+          "fabric-softener-btn"
+        ).checked;
+        var startTime = document.getElementById("start-time").value;
+        var endTime = document.getElementById("end-time").value;
+
+        document.getElementById("washing-machine-form").style.display = "none";
+        document.getElementById("confirmation-section").style.display = "block";
+
+        document.getElementById("washing-machine-form").reset();
+
+        showNotification("Washing machine started successfully!");
+      }
+
+      function showNotification(message) {
+        var notificationElement = document.getElementById(
+          "notification-message"
+        );
+        notificationElement.innerText = message;
+        document.querySelector(".notification").style.display = "block";
+
+        if (message === "Washing machine started successfully!") {
+          setTimeout(function () {
+            showSecondNotification(
+              "Alert: Colored laundry detected, machine stopped"
+            );
+          }, 3000);
+        }
+      }
+
+      function showSecondNotification(secondMessage) {
+        var notificationElement = document.getElementById(
+          "notification-message"
+        );
+        notificationElement.innerText = secondMessage;
+        notificationElement.style.backgroundColor = "red";
+        notificationElement.style.color = "white";
+
+        setTimeout(function () {
+          document.querySelector(".notification").style.display = "none";
+        }, 5000);
+      }
+    </script>
+    <script src="menu.js"></script>
+  </body>
+</html>

@@ -1,0 +1,1150 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+body {
+  background-color: #fff;
+  color: #333;
+  line-height: 1.6;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Header */
+header {
+  background-color: #0c374b;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header nav ul {
+  list-style: none;
+  display: flex;
+}
+
+header nav ul li {
+  margin: 0 1rem;
+}
+
+/*Navigatuor text*/
+header nav ul li a {
+  color: white;
+  font-size: 1.1rem;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+header nav ul li a:hover,
+header nav ul li a:focus {
+  color: lightgrey;
+}
+
+.logo h1 {
+  font-size: 1.5rem;
+  color: white;
+  font-family: didot;
+}
+
+.search input[type="text"] {
+  padding: 0.5rem;
+  border: none;
+  border-radius: 5px;
+  margin-right: 0.5rem;
+}
+
+.search button {
+  background-color: #fff;
+  color: #0c374b;
+  border: none;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.search button:hover {
+  background-color: #0c374b;
+  color: #fff;
+}
+/*div pour la photo de profil*/
+.profile-section {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-weight: bold;
+}
+
+.profile-pic {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+.welcome-text {
+  font-size: 1rem;
+  color: white; /* Ou toute autre couleur de votre choix */
+}
+
+/* Banner */
+.banner img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+/* Image Buttons */
+.image-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.image-buttons a {
+  position: relative;
+  width: calc(50% - 1rem);
+  margin: 0.5rem;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  color: white;
+  height: 280px;
+}
+
+.image-buttons img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  transition: transform 0.3s ease-in-out;
+}
+
+.image-buttons a:hover img {
+  transform: scale(1.05);
+}
+
+.image-button-text {
+  color: whitesmoke;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2rem;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Footer */
+footer {
+  background-color: #f4f4f4;
+  padding: 2rem 0;
+  text-align: center;
+  font-size: 0.9rem;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.footer-links a {
+  margin: 0 1rem;
+  color: #0c374b;
+  transition: color 0.3s;
+}
+
+.footer-links a:hover {
+  color: #1ca7c5;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .image-buttons a {
+    width: 100%;
+  }
+}
+
+/* Modification pour le header interactif
+
+/* Header */
+header {
+  background-color: #0c374b;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+  transition: background-color 0.3s, padding 0.3s;
+}
+
+/* Scrolling Effect */
+header.scrolled {
+  padding: 0.5rem 2rem;
+  background-color: #1ca7c5;
+}
+
+/* Navigation Menu */
+nav ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+nav ul li a {
+  padding: 0.5rem 1rem;
+  color: white;
+  transition: color 0.3s;
+}
+
+nav ul li a:hover {
+  color: #ffd1b3;
+}
+
+/* Mobile Menu */
+.mobile-menu-icon {
+  display: none;
+}
+
+/* For Mobile Screens */
+@media screen and (max-width: 768px) {
+  .mobile-menu-icon {
+    display: block;
+    cursor: pointer;
+  }
+
+  nav ul {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    background-color: #0c374b;
+    right: 0;
+    top: 60px;
+    width: 100%;
+  }
+
+  nav ul li a {
+    display: block;
+    text-align: center;
+    padding: 10px;
+    border-bottom: 1px solid #fff;
+  }
+}
+
+/* Style de l'icône du menu hamburger */
+
+.mobile-menu-icon {
+  display: block;
+  cursor: pointer;
+  position: absolute;
+  left: 100px;
+  top: 20px;
+  font-size: 1.5rem;
+  z-index: 1001;
+  color: white;
+}
+
+/* Style du menu lorsqu'il est fermé - pour tous les écrans */
+nav ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  position: fixed;
+  left: -100%;
+  top: 0;
+  width: 250px;
+  height: 100%;
+  overflow-y: auto;
+  background-color: #0c374b;
+  transition: left 0.3s;
+  z-index: 1000;
+  display: none;
+}
+
+/* Style pour les liens du menu */
+nav ul li {
+  display: block;
+}
+
+nav ul li a {
+  display: block;
+  padding: 10px 20px;
+  color: white;
+  text-decoration: none;
+  border-bottom: 1px solid white;
+  text-align: left;
+}
+
+/* Style pour le menu lorsqu'il est ouvert */
+nav ul.active {
+  display: block;
+  left: 0;
+}
+
+/* Media Query pour les écrans plus petits */
+@media screen and (max-width: 768px) {
+  .mobile-menu-icon {
+    display: block;
+  }
+
+  header nav ul {
+    flex-direction: column;
+  }
+
+  header nav ul li a {
+    text-align: center;
+    padding: 10px;
+    border-bottom: 1px solid #fff;
+  }
+}
+
+nav ul {
+  display: none;
+}
+
+/* Ajout d'une marge supérieure au premier élément de la liste */
+nav ul li:first-child {
+  margin-top: 60px;
+}
+
+/* Style pour les liens du menu */
+nav ul li {
+  display: block;
+}
+
+/*complement back button*/
+.back-button {
+  padding: 10px 15px;
+  background-color: #0c374b;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 1.5rem;
+  transition: background-color 0.3s;
+  position: absolute;
+  left: 3;
+  top: 13px;
+}
+
+.back-button:hover {
+  background-color: #1ca7c5;
+}
+
+/*complement for the airconditioner html page
+
+/* Main Content */
+main {
+  padding: 2rem;
+  margin-top: 80px;
+  background-color: #fff;
+}
+
+.airconditioner-control {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2.5rem;
+  background-color: #f9f9f9;
+  border-radius: 15px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.airconditioner-control h2 {
+  font-size: 2rem;
+  color: #0c374b;
+  margin-bottom: 2rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Form Styling */
+#airconditioner-form {
+  display: grid;
+  grid-gap: 1rem;
+}
+
+#airconditioner-form label {
+  color: #666;
+  margin-bottom: 0.8rem;
+  font-size: 1.2rem;
+}
+
+#airconditioner-form input[type="number"],
+#airconditioner-form select {
+  width: 100%;
+  padding: 0.8rem;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  transition: border-color 0.3s;
+}
+
+#airconditioner-form input[type="number"]:focus,
+#airconditioner-form select:focus {
+  border-color: #0c374b;
+}
+
+#airconditioner-form button {
+  background-color: #0c374b;
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: background-color 0.3s, transform 0.2s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+#airconditioner-form button:hover {
+  background-color: #1ca7c5;
+  transform: scale(1.1);
+}
+
+/* Notification Styling */
+.notification {
+  display: none;
+  background-color: #e7f9e7;
+  color: #37a037;
+  padding: 1rem;
+  margin-top: 2rem;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.notification p {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+/* complement part for the washing machine
+
+/* Main Content */
+main {
+  padding: 2rem;
+  margin-top: 80px;
+  background-color: #fff;
+}
+
+/* Banner */
+.banner img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  max-height: 300px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-top: 60px;
+}
+
+/* Washing Machine Control Section */
+.washing-machine-control {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2.5rem;
+  background-color: #f9f9f9;
+  border-radius: 15px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.washing-machine-control h2 {
+  font-size: 2rem;
+  color: #0c374b;
+  margin-bottom: 2rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Form Styling */
+#washing-machine-form {
+  display: grid;
+  grid-gap: 0.7rem;
+}
+
+#washing-machine-form label {
+  color: #666;
+  margin-bottom: 0.3rem;
+  font-size: 1.1rem;
+}
+
+#washing-machine-form select,
+#washing-machine-form input[type="checkbox"] {
+  width: 100%;
+  padding: 0.8rem;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  transition: border-color 0.3s;
+}
+
+input[type="time"] {
+  width: 100%;
+  padding: 0.8rem;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  transition: border-color 0.3s;
+}
+
+input[type="time"] {
+  width: 100%;
+  padding: 0.8rem;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  transition: border-color 0.3s;
+}
+
+#washing-machine-form select:focus,
+#washing-machine-form input:focus {
+  border-color: #0c374b;
+}
+
+#washing-machine-form button {
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: background-color 0.3s, transform 0.2s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.start-washing {
+  background-color: #0c374b;
+}
+
+#washing-machine-form button:hover {
+  transform: scale(1.1);
+}
+
+.start-washing:hover {
+  background-color: #1ca7c5;
+  transform: scale(1.1);
+}
+
+/*Softener button*/
+.softener-btn {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 0.8rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.softener-btn.on {
+  background-color: green;
+}
+
+.softener-btn.off {
+  background-color: red;
+}
+
+/* Notification Styling */
+.notification {
+  display: none;
+  background-color: #e7f9e7;
+  color: #37a037;
+  padding: 1rem;
+  margin-top: 2rem;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.notification p {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+/* complement to the stuffed turkey page
+/*pop up loading*/
+/* Styles pour la page de chargement */
+.loading-page {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  font-size: 2rem;
+  color: #333;
+}
+
+.loading-message {
+  text-align: center;
+}
+
+/* Styles pour la pop-up de chargement */
+.loading-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.loading-icon {
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #0c374b;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 3s linear infinite;
+}
+/*Style for the loading texte */
+.loading-text {
+  color: white;
+  text-align: center;
+  margin-top: 10px;
+  margin-left: 25px;
+  font-size: 3em;
+  font-weight: bold;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Main Content */
+main {
+  padding: 2rem;
+  margin-top: 80px;
+  background-color: #fff;
+}
+
+/* Recipe Section */
+.recipe {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.image-recipe-left img {
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.list-para-right {
+  flex: 1;
+  padding-left: 2rem;
+}
+
+.list-para-right h2 {
+  color: #0c374b;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  font-size: 22px;
+}
+
+.list-para-right h3 {
+  font-size: 20px;
+}
+
+.list-para-right p {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+  font-size: 20px;
+}
+
+.list-para-right ul {
+  list-style-type: disc;
+  margin-left: 20px;
+}
+
+.list-para-right li {
+  font-size: 16px;
+}
+
+.recipe-buttons {
+  margin-top: 1rem;
+}
+
+.recipe-button {
+  display: inline-block;
+  background-color: #0c374b;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.recipe-button:hover {
+  background-color: #1ca7c5;
+}
+
+/* User Actions Section */
+.user-actions {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: #f9f9f9;
+  border-radius: 15px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  display: grid;
+  grid-gap: 0.5rem;
+}
+
+.user-actions label {
+  display: block;
+  color: #666;
+  margin: 1rem 0 0.5rem;
+  font-size: 1.2rem;
+}
+
+.user-actions select {
+  width: 100%;
+  padding: 0.8rem;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.user-actions button {
+  background-color: #0c374b;
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: background-color 0.3s, transform 0.2s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.user-actions button:hover {
+  background-color: #1ca7c5;
+  transform: scale(1.1);
+}
+
+/* Notification Styling */
+.notification {
+  display: none;
+  background-color: #e7f9e7;
+  color: #37a037;
+  padding: 1rem;
+  margin-top: 2rem;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.notification p {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .recipe {
+    flex-direction: column;
+  }
+
+  .list-para-right {
+    padding-left: 0;
+    padding-top: 2rem;
+  }
+
+  .user-actions {
+    width: 100%;
+  }
+}
+
+.ingredient-display h3 {
+  font-size: 1.7rem;
+}
+
+#ingredient-list {
+  font-size: 1.5rem;
+}
+
+/*complement div avec les deux section pour stuffed turkey*/
+
+.user-actions-container {
+  display: flex;
+  justify-content: center;
+  gap: 0px;
+}
+
+.user-actions {
+  flex: 1;
+  max-width: 500px;
+}
+
+/* Ensure the layout is responsive */
+@media screen and (max-width: 768px) {
+  .user-actions-container {
+    flex-direction: column;
+  }
+
+  .user-actions {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+/* Recipe Section */
+.recipe {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.image-recipe-left,
+.list-para-right {
+  flex: 1 1 50%;
+  padding: 1rem;
+}
+
+.image-recipe-left img {
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.list-para-right {
+  max-width: 600px;
+}
+
+.list-para-right h2,
+.list-para-right p,
+.list-para-right ul {
+  margin-bottom: 1rem;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .recipe {
+    flex-direction: column;
+  }
+
+  .image-recipe-left,
+  .list-para-right {
+    flex-basis: 100%;
+  }
+}
+
+/*complement pour la page fridge.html
+/*le style du type tel*/
+input[type="tel"] {
+  padding: 10px;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+  color: #333;
+  background-color: #fff;
+  transition: border-color 0.3s;
+}
+
+input[type="tel"]:focus {
+  border-color: #0c374b;
+  outline: none;
+}
+
+input[type="tel"]:hover {
+  border-color: #1ca7c5;
+}
+
+/*Buy button products*/
+.addingtocart-button {
+  background-color: #0c374b;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.addingtocart-button:hover {
+  background-color: #1ca7c5;
+  transform: scale(1.05);
+}
+
+/* Product Display */
+.product-display,
+.suggested-products {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1rem;
+  background-color: #f9f9f9;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.product-display h2,
+.suggested-products h2 {
+  color: #0c374b;
+  margin-bottom: 1rem;
+}
+
+.product-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.product-item {
+  background-color: #fff;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.product-item h3 {
+  margin-bottom: 0.5rem;
+}
+
+/*cart css*/
+.shopping-cart-icon {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 1.5rem;
+}
+
+#cart-count {
+  background-color: black;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  margin-left: 4px;
+  font-size: 1rem;
+}
+
+/*product-item button*/
+
+.buy-button {
+  background-color: #0c374b;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.buy-button:hover {
+  background-color: #1ca7c5;
+  transform: scale(1.05);
+}
+
+.delete-button {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.delete-button:hover {
+  background-color: darkred;
+  transform: scale(1.05);
+}
+
+/* Button Styling */
+.suggested-products button {
+  background-color: #0c374b;
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  margin-top: 1rem;
+  transition: background-color 0.3s, transform 0.2s;
+  display: block;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.suggested-products button:hover {
+  background-color: #1ca7c5;
+  transform: scale(1.1);
+} /* complement pour la pop-up de fridge.html
+
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 10% auto;
+  padding: 2rem;
+  border: none;
+  width: 90%;
+  max-width: 600px;
+  border-radius: 15px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.close-button {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close-button:hover,
+.close-button:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Modal Content Styling */
+.modal-content h3 {
+  color: #0c374b;
+  margin-bottom: 1rem;
+}
+
+.modal-content p,
+.modal-content select {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.modal-content select {
+  width: 100%;
+  padding: 0.8rem;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 1.1rem;
+}
+
+/* Modal Buttons */
+.modal-content button {
+  background-color: #0c374b;
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  margin-top: 1rem;
+  transition: background-color 0.3s, transform 0.2s;
+  display: block;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.modal-content button:hover {
+  background-color: #1ca7c5;
+  transform: scale(1.1);
+}
+
+/*style pour que les section soit cote à cote*/
+
+.sections-container {
+  display: flex;
+  flex-wrap: nowrap;
+  width: 100%;
+  gap: 20px;
+}
+
+.product-display,
+.suggested-products {
+  flex: 1;
+}
+
+.product-display {
+  margin-right: 10px;
+}
+
+.suggested-products {
+  margin-left: 10px;
+}
+
+/*Page pas encore disponible*/
+.under-construction {
+  text-align: center;
+  padding: 2rem;
+  margin-top: 100px;
+}
+
+.under-construction h2 {
+  font-size: 2rem;
+  color: #0c374b;
+  margin-bottom: 1rem;
+}
+
+.under-construction p {
+  font-size: 1.2rem;
+  color: #333;
+}
